@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mrx
+  labels:
+    app: mrx
+spec:
+  hostname: mrx
+  containers:
+  - name: marlowe-clean
+    image: ghcr.io/functionally/marlowe-clean:latest
+    env:
+    - name: PGHOST
+      value: host.containers.internal
+    - name: PGPORT
+      value: 5432
+    - name: PGUSER
+      value: cardano
+    - name: PGPASSWORD
+      value: bcb33b5c09e31e3dd5a2b4ff0ee111e6
+    - name: NETWORK
+      value: preprod
+    - name: MARLOWE_RT_HOST
+      value: mrt-preprod
+    - name: MARLOWE_RT_PORT
+      value: 3780
+    volumeMounts:
+    - mountPath: /app
+      name: shared
+  volumes:
+  - name: shared
+    hostPath:
+      type: Directory
+      path: ./.
+  restartPolicy: Never
