@@ -31,6 +31,7 @@
           config = {
             Cmd = [ "${pkgs.bash}/bin/bash" "loop.sh" ];
             WorkingDir = "/app";
+            Volumes = { "/ipc" = { }; "/keys" = { }; };
           };
         };
       in

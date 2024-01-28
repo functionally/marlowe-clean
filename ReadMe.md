@@ -6,7 +6,7 @@ Scripts for find and advance all Marlowe transactions that have timed out.
 ## Build docker image
 
 ```bash
-podman load < $(nix build --print-out-paths)
+podman load < $(nix build --no-link --print-out-paths)
 podman push localhost/marlowe-clean:latest docker://ghcr.io/functionally/marlowe-clean:latest
 ```
 
